@@ -29,14 +29,25 @@ async function main() {
   const adminHash = await bcrypt.hash('Admin@123', 10);
   const ownerHash = await bcrypt.hash('Owner@123', 10);
   const userHash = await bcrypt.hash('User@123', 10);
+  const admin2Hash = await bcrypt.hash('Admin2@123', 10);
 
-  // 1. Create ADMIN
+  // 1. Create ADMINS
   const admin = await prisma.user.create({
     data: {
       name: 'System Administrator Account',
       email: 'admin@example.com',
       password: adminHash,
       address: 'Head Office, Pune',
+      role: 'ADMIN',
+    },
+  });
+
+  const admin2 = await prisma.user.create({
+    data: {
+      name: 'System Administrator Two',
+      email: 'admin2@example.com',
+      password: admin2Hash,
+      address: 'Secondary Office, Mumbai',
       role: 'ADMIN',
     },
   });
@@ -91,6 +102,30 @@ async function main() {
       address: 'Swargate, Pune',
     },
   });
+
+  // 5. Generate 10 additional Owners and 10 corresponding Stores programmatically
+  console.log('Generating 10 additional owners and 10 stores...');
+  for (let i = 1; i <= 10; i++) {
+    const loopOwnerHash = await bcrypt.hash(`Owner@123`, 10);
+    const loopOwner = await prisma.user.create({
+      data: {
+        name: `Owner Account ${i}`,
+        email: `owner${i}@example.com`,
+        password: loopOwnerHash,
+        address: `Commercial Area Sector ${i}, Pune`,
+        role: 'OWNER',
+      },
+    });
+
+    await prisma.store.create({
+      data: {
+        name: `Store Outlet ${i}`,
+        email: `store${i}@example.com`,
+        address: `Commercial Plaza Suite ${i}, Pune`,
+        ownerId: loopOwner.id,
+      },
+    });
+  }
 
   console.log('Database successfully seeded!');
   
