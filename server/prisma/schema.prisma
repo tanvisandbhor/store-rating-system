@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  USER
+  OWNER
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  address   String
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  store     Store?   // A Store Owner owns a store (1:1 relation)
+  ratings   Rating[] // A Normal User submits ratings (1:N relation)
+
+  @@index([name])
+}
+
+model Store {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  address   String
+  ownerId   Int?     @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  owner     User?    @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  ratings   Rating[] // A store has ratings (1:N relation)
+
+  @@index([name])
+  @@index([address])
+}
+
+model Rating {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  storeId   Int
+  rating    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, storeId])
+  @@index([storeId])
+  @@index([userId])
+}
