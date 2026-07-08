@@ -196,22 +196,23 @@ const AdminDashboard = () => {
     <DashboardLayout>
       <div className="animate-fade-in">
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
           <div>
-            <h1 style={{ fontSize: '32px', fontWeight: '800', letterSpacing: '-0.02em' }}>Admin Console</h1>
-            <p style={{ color: 'var(--text-muted)' }}>Manage platform users, stores, and ratings</p>
+            <h1 style={{ fontSize: '28px', fontWeight: '800', letterSpacing: '-0.02em', color: 'var(--text-main)', margin: 0 }}>Admin Console</h1>
+            <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginTop: '2px', margin: 0 }}>Manage platform users, stores, and ratings</p>
           </div>
 
           {/* Tabs Navigation */}
-          <div className="glass-panel" style={{ display: 'flex', padding: '6px', gap: '4px', borderRadius: '12px' }}>
+          <div className="glass-panel" style={{ display: 'flex', padding: '4px', gap: '2px', borderRadius: '10px' }}>
             <button
               onClick={() => setActiveTab('overview')}
               className="btn"
               style={{
-                padding: '8px 16px',
-                fontSize: '14px',
+                padding: '6px 14px',
+                fontSize: '13px',
                 background: activeTab === 'overview' ? 'var(--primary-gradient)' : 'transparent',
                 color: activeTab === 'overview' ? 'white' : 'var(--text-muted)',
+                borderRadius: '8px',
               }}
             >
               Overview
@@ -220,10 +221,11 @@ const AdminDashboard = () => {
               onClick={() => setActiveTab('users')}
               className="btn"
               style={{
-                padding: '8px 16px',
-                fontSize: '14px',
+                padding: '6px 14px',
+                fontSize: '13px',
                 background: activeTab === 'users' ? 'var(--primary-gradient)' : 'transparent',
                 color: activeTab === 'users' ? 'white' : 'var(--text-muted)',
+                borderRadius: '8px',
               }}
             >
               Users List
@@ -232,10 +234,11 @@ const AdminDashboard = () => {
               onClick={() => setActiveTab('stores')}
               className="btn"
               style={{
-                padding: '8px 16px',
-                fontSize: '14px',
+                padding: '6px 14px',
+                fontSize: '13px',
                 background: activeTab === 'stores' ? 'var(--primary-gradient)' : 'transparent',
                 color: activeTab === 'stores' ? 'white' : 'var(--text-muted)',
+                borderRadius: '8px',
               }}
             >
               Stores List
@@ -243,10 +246,10 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Global Feedback Banner */}
-        {error && <div className="error-banner" style={{ marginBottom: '24px' }}>{error}</div>}
+        {/* Global Feedback Banner (Placed below tabs to keep tabs navigation fixed) */}
+        {error && <div className="error-banner" style={{ marginBottom: '16px' }}>{error}</div>}
         {success && (
-          <div className="badge" style={{ width: '100%', padding: '12px', background: 'rgba(5, 150, 105, 0.08)', color: '#047857', border: '1px solid rgba(5, 150, 105, 0.15)', marginBottom: '24px', display: 'block', textAlign: 'center' }}>
+          <div className="badge" style={{ width: '100%', padding: '10px', background: 'rgba(5, 150, 105, 0.08)', color: '#047857', border: '1px solid rgba(5, 150, 105, 0.15)', marginBottom: '16px', display: 'block', textAlign: 'center' }}>
             {success}
           </div>
         )}
@@ -255,8 +258,8 @@ const AdminDashboard = () => {
         {activeTab === 'overview' && (
           <div>
             {/* Stats Cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-              <div className="glass-panel accented" style={{ padding: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '20px' }}>
+              <div className="glass-panel accented" style={{ padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <span style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Registered Users</span>
                   <h3 style={{ fontSize: '42px', fontWeight: '800', margin: '4px 0 0', background: 'linear-gradient(135deg, #b45309 0%, #d97706 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
@@ -268,7 +271,7 @@ const AdminDashboard = () => {
                 </div>
               </div>
 
-              <div className="glass-panel accented" style={{ padding: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div className="glass-panel accented" style={{ padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <span style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Registered Stores</span>
                   <h3 style={{ fontSize: '42px', fontWeight: '800', margin: '4px 0 0', background: 'linear-gradient(135deg, #d97706 0%, #eab308 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
@@ -280,7 +283,7 @@ const AdminDashboard = () => {
                 </div>
               </div>
 
-              <div className="glass-panel accented" style={{ padding: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div className="glass-panel accented" style={{ padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <span style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Ratings Submitted</span>
                   <h3 style={{ fontSize: '42px', fontWeight: '800', margin: '4px 0 0', background: 'linear-gradient(135deg, #ea580c 0%, #f97316 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
@@ -294,10 +297,10 @@ const AdminDashboard = () => {
             </div>
 
             {/* Split forms panels */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '32px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '20px' }}>
               {/* Add User form */}
-              <div className="glass-panel" style={{ padding: '32px' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '24px' }}>Register New User</h3>
+              <div className="glass-panel" style={{ padding: '24px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '16px' }}>Register New User</h3>
                 <form onSubmit={handleCreateUser}>
                   <div className="form-group">
                     <label className="form-label">Full Name</label>
@@ -358,8 +361,8 @@ const AdminDashboard = () => {
               </div>
 
               {/* Add Store form */}
-              <div className="glass-panel" style={{ padding: '32px' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '24px' }}>Register New Store</h3>
+              <div className="glass-panel" style={{ padding: '24px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '16px' }}>Register New Store</h3>
                 <form onSubmit={handleCreateStore}>
                   <div className="form-group">
                     <label className="form-label">Store Name</label>

@@ -78,7 +78,7 @@ const DashboardLayout = ({ children }) => {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Top Navbar */}
-      <header style={{ position: 'sticky', top: 0, zIndex: 100, padding: '16px 24px 0' }}>
+      <header style={{ position: 'sticky', top: 0, zIndex: 100, padding: '8px 24px 0' }}>
         <nav className="floating-nav">
           <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 24px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -130,7 +130,7 @@ const DashboardLayout = ({ children }) => {
       </header>
 
       {/* Main Content Area */}
-      <main className="container animate-fade-in" style={{ padding: '24px', flex: 1 }}>
+      <main className="container animate-fade-in" style={{ padding: '12px 24px 24px', flex: 1 }}>
         {children}
       </main>
 
