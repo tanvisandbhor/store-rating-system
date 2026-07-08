@@ -105,61 +105,82 @@ const UserDashboard = () => {
     <DashboardLayout>
       <div className="animate-fade-in">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h1 style={{ fontSize: '36px', fontWeight: '800', letterSpacing: '-0.02em', background: 'var(--primary-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '8px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <h1 style={{ fontSize: '32px', fontWeight: '800', letterSpacing: '-0.02em', background: 'var(--primary-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '4px' }}>
             Explore Registered Stores
           </h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '16px' }}>Rate your favorite places and share your feedback</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '15px' }}>Rate your favorite places and share your feedback</p>
         </div>
 
         {/* Feedback Banners */}
-        {error && <div className="error-banner" style={{ marginBottom: '24px' }}>{error}</div>}
+        {error && <div className="error-banner" style={{ marginBottom: '20px' }}>{error}</div>}
         {successMsg && (
-          <div className="badge" style={{ width: '100%', padding: '12px', background: 'rgba(5, 150, 105, 0.08)', color: '#047857', border: '1px solid rgba(5, 150, 105, 0.15)', marginBottom: '24px', display: 'block', textAlign: 'center' }}>
+          <div className="badge" style={{ width: '100%', padding: '12px', background: 'rgba(5, 150, 105, 0.08)', color: '#047857', border: '1px solid rgba(5, 150, 105, 0.15)', marginBottom: '20px', display: 'block', textAlign: 'center' }}>
             {successMsg}
           </div>
         )}
 
         {/* Toolbar: Filters, Search & Sort */}
-        <div className="glass-panel" style={{ padding: '24px', marginBottom: '40px', display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
-          <div className="form-group" style={{ marginBottom: 0, flex: '2 1 240px' }}>
-            <label className="form-label">Search by Store Name</label>
+        <div className="glass-panel" style={{ padding: '12px 24px', marginBottom: '24px', display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+          <div style={{ flex: '2 1 200px' }}>
             <input
               type="text"
               className="form-input"
-              placeholder="e.g. Central Store"
+              style={{ padding: '10px 16px', height: '42px' }}
+              placeholder="🔍 Search Store Name..."
               value={searchName}
               onChange={(e) => setSearchName(e.target.value)}
             />
           </div>
 
-          <div className="form-group" style={{ marginBottom: 0, flex: '2 1 240px' }}>
-            <label className="form-label">Search by Address</label>
+          <div style={{ flex: '2 1 200px' }}>
             <input
               type="text"
               className="form-input"
-              placeholder="e.g. Silicon Valley"
+              style={{ padding: '10px 16px', height: '42px' }}
+              placeholder="📍 Search Address..."
               value={searchAddress}
               onChange={(e) => setSearchAddress(e.target.value)}
             />
           </div>
 
-          <div className="form-group" style={{ marginBottom: 0, flex: '1 1 150px' }}>
-            <label className="form-label">Sort Column</label>
-            <select className="form-input" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-              <option value="name">Store Name</option>
-              <option value="address">Address</option>
-              <option value="rating">Overall Rating</option>
+          <div style={{ flex: '1 1 140px' }}>
+            <select
+              className="form-input"
+              style={{ padding: '10px 36px 10px 16px', height: '42px' }}
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+            >
+              <option value="name">Sort: Name</option>
+              <option value="address">Sort: Address</option>
+              <option value="rating">Sort: Rating</option>
             </select>
           </div>
 
-          <div className="form-group" style={{ marginBottom: 0, flex: '1 1 150px' }}>
-            <label className="form-label">Sort Order</label>
-            <select className="form-input" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-              <option value="asc">Ascending (A-Z / 1-5)</option>
-              <option value="desc">Descending (Z-A / 5-1)</option>
+          <div style={{ flex: '1 1 140px' }}>
+            <select
+              className="form-input"
+              style={{ padding: '10px 36px 10px 16px', height: '42px' }}
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+            >
+              <option value="asc">Order: Asc</option>
+              <option value="desc">Order: Desc</option>
             </select>
           </div>
+
+          <button
+            onClick={() => {
+              setSearchName('');
+              setSearchAddress('');
+              setSortBy('name');
+              setSortOrder('asc');
+            }}
+            className="btn btn-secondary"
+            style={{ padding: '10px 18px', height: '42px', fontSize: '14px', borderRadius: '12px', fontWeight: '700' }}
+          >
+            Reset
+          </button>
         </div>
 
         {/* Store Catalog Cards Grid */}
