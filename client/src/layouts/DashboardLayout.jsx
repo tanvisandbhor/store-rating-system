@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { LogOut, Key, Sparkles, User, ShieldAlert } from 'lucide-react';
 
 const DashboardLayout = ({ children }) => {
   const { user, logout, changePassword } = useAuth();
@@ -75,52 +76,61 @@ const DashboardLayout = ({ children }) => {
   };
 
   return (
-    <div>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Top Navbar */}
-      <nav style={{ background: 'rgba(255, 255, 255, 0.72)', borderBottom: '1px solid rgba(180, 83, 9, 0.08)', backdropFilter: 'blur(16px)', position: 'sticky', top: 0, zIndex: 100 }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 24px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--primary-gradient)' }}></div>
-            <span style={{ fontSize: '20px', fontWeight: '800', trackingTight: '-0.02em', color: 'var(--text-main)' }}>
-              Rate<span style={{ color: 'var(--accent-pink)' }}>Sphere</span>
-            </span>
-          </div>
-
-          {user && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                <span style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-main)' }}>{user.name}</span>
-                <span className={`badge ${getRoleBadgeClass(user.role)}`} style={{ marginTop: '4px' }}>
-                  {getRoleLabel(user.role)}
-                </span>
+      <header style={{ position: 'sticky', top: 0, zIndex: 100, padding: '16px 24px 0' }}>
+        <nav className="floating-nav">
+          <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ padding: '6px', background: 'rgba(217, 119, 6, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Sparkles size={16} style={{ color: 'var(--accent-pink)' }} />
               </div>
-
-              <div style={{ display: 'flex', gap: '8px' }}>
-                {user.role !== 'ADMIN' && (
-                  <button
-                    onClick={() => setShowPasswordModal(true)}
-                    className="btn btn-secondary"
-                    style={{ padding: '8px 14px', fontSize: '13px' }}
-                  >
-                    Change Password
-                  </button>
-                )}
-
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-danger"
-                  style={{ padding: '8px 14px', fontSize: '13px' }}
-                >
-                  Logout
-                </button>
-              </div>
+              <span style={{ fontSize: '20px', fontWeight: '800', trackingTight: '-0.02em', color: 'var(--text-main)' }}>
+                Rate<span style={{ color: 'var(--accent-pink)' }}>Sphere</span>
+              </span>
             </div>
-          )}
-        </div>
-      </nav>
+
+            {user && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <User size={13} style={{ color: 'var(--text-muted)' }} />
+                    <span style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-main)' }}>{user.name}</span>
+                  </div>
+                  <span className={`badge ${getRoleBadgeClass(user.role)}`} style={{ marginTop: '4px' }}>
+                    {getRoleLabel(user.role)}
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  {user.role !== 'ADMIN' && (
+                    <button
+                      onClick={() => setShowPasswordModal(true)}
+                      className="btn btn-secondary"
+                      style={{ padding: '8px 14px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                    >
+                      <Key size={14} />
+                      Change Password
+                    </button>
+                  )}
+
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-danger"
+                    style={{ padding: '8px 14px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                  >
+                    <LogOut size={14} />
+                    Logout
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </nav>
+      </header>
 
       {/* Main Content Area */}
-      <main className="container animate-fade-in" style={{ padding: '32px 24px' }}>
+      <main className="container animate-fade-in" style={{ padding: '24px', flex: 1 }}>
         {children}
       </main>
 
@@ -128,9 +138,17 @@ const DashboardLayout = ({ children }) => {
       {showPasswordModal && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(43, 37, 32, 0.25)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '16px' }}>
           <div className="glass-panel" style={{ width: '100%', maxWidth: '400px', padding: '32px', position: 'relative' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-main)' }}>Change Password</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px' }}>
+              <Key size={20} style={{ color: 'var(--accent-pink)' }} />
+              <h3 style={{ fontSize: '20px', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>Change Password</h3>
+            </div>
             
-            {modalError && <div className="error-banner">{modalError}</div>}
+            {modalError && (
+              <div className="error-banner">
+                <ShieldAlert size={16} />
+                {modalError}
+              </div>
+            )}
             {modalSuccess && <div className="badge" style={{ width: '100%', padding: '10px', background: 'rgba(5, 150, 105, 0.08)', color: '#047857', border: '1px solid rgba(5, 150, 105, 0.15)', marginBottom: '16px', display: 'block', textAlign: 'center' }}>{modalSuccess}</div>}
 
             <form onSubmit={handlePasswordChange}>

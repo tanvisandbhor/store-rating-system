@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import DashboardLayout from '../layouts/DashboardLayout';
+import CountUp from '../components/CountUp';
+import { CardSkeleton, TableSkeleton } from '../components/Skeleton';
+import { Users, Store, Star, Search, PlusCircle, UserPlus, FileText, ShieldAlert, Sparkles, Eye } from 'lucide-react';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'users', 'stores'
@@ -253,17 +256,40 @@ const AdminDashboard = () => {
           <div>
             {/* Stats Cards */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-              <div className="glass-panel float-card-1" style={{ padding: '24px' }}>
-                <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Registered Users</span>
-                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '8px 0 0', background: 'linear-gradient(135deg, #b45309 0%, #d97706 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stats.users}</h3>
+              <div className="glass-panel accented" style={{ padding: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <span style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Registered Users</span>
+                  <h3 style={{ fontSize: '42px', fontWeight: '800', margin: '4px 0 0', background: 'linear-gradient(135deg, #b45309 0%, #d97706 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    <CountUp to={stats.users} />
+                  </h3>
+                </div>
+                <div style={{ padding: '12px', background: 'rgba(180, 83, 9, 0.08)', borderRadius: '14px', color: '#b45309' }}>
+                  <Users size={24} />
+                </div>
               </div>
-              <div className="glass-panel float-card-2" style={{ padding: '24px' }}>
-                <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Registered Stores</span>
-                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '8px 0 0', background: 'linear-gradient(135deg, #d97706 0%, #eab308 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stats.stores}</h3>
+
+              <div className="glass-panel accented" style={{ padding: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <span style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Registered Stores</span>
+                  <h3 style={{ fontSize: '42px', fontWeight: '800', margin: '4px 0 0', background: 'linear-gradient(135deg, #d97706 0%, #eab308 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    <CountUp to={stats.stores} />
+                  </h3>
+                </div>
+                <div style={{ padding: '12px', background: 'rgba(217, 119, 6, 0.08)', borderRadius: '14px', color: '#d97706' }}>
+                  <Store size={24} />
+                </div>
               </div>
-              <div className="glass-panel float-card-3" style={{ padding: '24px' }}>
-                <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Ratings Submitted</span>
-                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '8px 0 0', background: 'linear-gradient(135deg, #ea580c 0%, #f97316 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stats.ratings}</h3>
+
+              <div className="glass-panel accented" style={{ padding: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <span style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Ratings Submitted</span>
+                  <h3 style={{ fontSize: '42px', fontWeight: '800', margin: '4px 0 0', background: 'linear-gradient(135deg, #ea580c 0%, #f97316 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    <CountUp to={stats.ratings} />
+                  </h3>
+                </div>
+                <div style={{ padding: '12px', background: 'rgba(249, 115, 22, 0.08)', borderRadius: '14px', color: '#ea580c' }}>
+                  <Star size={24} />
+                </div>
               </div>
             </div>
 
@@ -421,10 +447,10 @@ const AdminDashboard = () => {
             </div>
 
             {loading ? (
-              <div className="spinner"></div>
+              <TableSkeleton rows={5} cols={5} />
             ) : users.length === 0 ? (
               <div className="empty-state">
-                <div className="empty-state-icon">👥</div>
+                <Users className="empty-state-icon" style={{ strokeWidth: 1.2, color: 'var(--text-dim)', marginBottom: '16px' }} />
                 <p>No registered users found matching the filter criteria.</p>
               </div>
             ) : (
@@ -451,7 +477,8 @@ const AdminDashboard = () => {
                           </span>
                         </td>
                         <td>
-                          <button onClick={() => viewUserDetails(u.id)} className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '13px' }}>
+                          <button onClick={() => viewUserDetails(u.id)} className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                            <Eye size={13} />
                             View Details
                           </button>
                         </td>
@@ -493,10 +520,10 @@ const AdminDashboard = () => {
             </div>
 
             {loading ? (
-              <div className="spinner"></div>
+              <TableSkeleton rows={5} cols={4} />
             ) : stores.length === 0 ? (
               <div className="empty-state">
-                <div className="empty-state-icon">🏪</div>
+                <Store className="empty-state-icon" style={{ strokeWidth: 1.2, color: 'var(--text-dim)', marginBottom: '16px' }} />
                 <p>No registered stores found matching the filter criteria.</p>
               </div>
             ) : (

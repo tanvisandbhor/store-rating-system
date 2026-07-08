@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import DashboardLayout from '../layouts/DashboardLayout';
+import { CardSkeleton } from '../components/Skeleton';
+import { Search, MapPin, Star, Store, AlertCircle, ThumbsUp } from 'lucide-react';
 
 const UserDashboard = () => {
   const [stores, setStores] = useState([]);
@@ -162,10 +164,14 @@ const UserDashboard = () => {
 
         {/* Store Catalog Cards Grid */}
         {loading ? (
-          <div className="spinner" style={{ marginTop: '48px' }}></div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '24px' }}>
+            {Array.from({ length: 6 }).map((_, idx) => (
+              <CardSkeleton key={idx} />
+            ))}
+          </div>
         ) : stores.length === 0 ? (
           <div className="glass-panel empty-state">
-            <div className="empty-state-icon">🏪</div>
+            <Store className="empty-state-icon" style={{ strokeWidth: 1.2, color: 'var(--text-dim)', marginBottom: '16px' }} />
             <h3>No Stores Found</h3>
             <p style={{ marginTop: '8px' }}>We couldn't find any registered stores matching your search parameters.</p>
           </div>
@@ -174,12 +180,12 @@ const UserDashboard = () => {
             {stores.map((store) => {
               const hasRated = store.userRating !== null;
               return (
-                <div key={store.id} className="glass-panel" style={{ padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+                <div key={store.id} className="glass-panel accented" style={{ padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                   <div>
                     {/* Card Header */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
                       <div style={{ padding: '10px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontSize: '24px' }}>🏪</span>
+                        <Store size={22} style={{ color: 'var(--accent-pink)' }} />
                       </div>
 
                       {/* Overall Average Rating Badge */}
@@ -192,14 +198,17 @@ const UserDashboard = () => {
                     </div>
 
                     {/* Store Info */}
-                    <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '6px' }}>{store.name}</h3>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '14px', minHeight: '42px', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
-                      {store.address}
-                    </p>
+                    <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)' }}>{store.name}</h3>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', color: 'var(--text-muted)', fontSize: '14px', minHeight: '42px', marginTop: '8px' }}>
+                      <MapPin size={14} style={{ marginRight: '6px', marginTop: '3px', flexShrink: 0, color: 'var(--text-dim)' }} />
+                      <p style={{ margin: 0, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
+                        {store.address}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Rating Section */}
-                  <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid var(--border-glass)' }}>
+                  <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid rgba(180, 83, 9, 0.08)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                       <span style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
                         {hasRated ? 'Your submitted rating' : 'Leave your rating'}

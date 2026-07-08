@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import DashboardLayout from '../layouts/DashboardLayout';
+import CountUp from '../components/CountUp';
+import { TableSkeleton } from '../components/Skeleton';
+import { Store, Star, FileText, ArrowUpDown, ShieldAlert, Sparkles } from 'lucide-react';
 
 const OwnerDashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
@@ -44,9 +47,14 @@ const OwnerDashboard = () => {
         {/* Error State if owner has no store */}
         {error && (
           <div className="glass-panel" style={{ padding: '40px 24px', textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
-            <div className="empty-state-icon" style={{ fontSize: '64px', color: 'var(--danger)', marginBottom: '16px' }}>⚠️</div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+              <ShieldAlert size={48} style={{ color: 'var(--danger)' }} />
+            </div>
             <h2 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '12px' }}>Access Restricted</h2>
-            <div className="error-banner" style={{ display: 'inline-block', width: 'auto' }}>{error}</div>
+            <div className="error-banner" style={{ display: 'inline-flex', width: 'auto', justifyContent: 'center', alignItems: 'center' }}>
+              <ShieldAlert size={16} />
+              {error}
+            </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '15px', marginTop: '16px' }}>
               Please contact the System Administrator to register and assign a store to your account.
             </p>
@@ -54,7 +62,7 @@ const OwnerDashboard = () => {
         )}
 
         {loading && !dashboardData && (
-          <div className="spinner" style={{ marginTop: '48px' }}></div>
+          <TableSkeleton rows={5} cols={4} />
         )}
 
         {dashboardData && (
@@ -68,21 +76,31 @@ const OwnerDashboard = () => {
 
             {/* Metrics cards */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-              <div className="glass-panel float-card-1" style={{ padding: '28px' }}>
-                <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Overall Store Rating</span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '8px' }}>
-                  <span style={{ color: '#fbbf24', fontSize: '38px' }}>★</span>
-                  <h3 style={{ fontSize: '48px', fontWeight: '800', background: 'var(--primary-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1 }}>
-                    {dashboardData.averageRating > 0 ? dashboardData.averageRating.toFixed(1) : 'New'}
-                  </h3>
+              <div className="glass-panel accented" style={{ padding: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <span style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Overall Store Rating</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px' }}>
+                    <span style={{ color: '#fbbf24', fontSize: '28px' }}>★</span>
+                    <h3 style={{ fontSize: '42px', fontWeight: '800', background: 'var(--primary-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1 }}>
+                      {dashboardData.averageRating > 0 ? dashboardData.averageRating.toFixed(1) : 'New'}
+                    </h3>
+                  </div>
+                </div>
+                <div style={{ padding: '12px', background: 'rgba(217, 119, 6, 0.08)', borderRadius: '14px', color: '#d97706' }}>
+                  <Star size={24} />
                 </div>
               </div>
 
-              <div className="glass-panel float-card-2" style={{ padding: '28px' }}>
-                <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Reviews Submitted</span>
-                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '14px 0 0', background: 'linear-gradient(135deg, #ea580c 0%, #f97316 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1 }}>
-                  {dashboardData.totalReviews}
-                </h3>
+              <div className="glass-panel accented" style={{ padding: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <span style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Reviews Submitted</span>
+                  <h3 style={{ fontSize: '42px', fontWeight: '800', margin: '4px 0 0', background: 'linear-gradient(135deg, #ea580c 0%, #f97316 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1 }}>
+                    <CountUp to={dashboardData.totalReviews} />
+                  </h3>
+                </div>
+                <div style={{ padding: '12px', background: 'rgba(249, 115, 22, 0.08)', borderRadius: '14px', color: '#ea580c' }}>
+                  <FileText size={24} />
+                </div>
               </div>
             </div>
 
@@ -92,7 +110,7 @@ const OwnerDashboard = () => {
               
               {dashboardData.reviews.length === 0 ? (
                 <div className="empty-state">
-                  <div className="empty-state-icon">📝</div>
+                  <FileText className="empty-state-icon" style={{ strokeWidth: 1.2, color: 'var(--text-dim)', marginBottom: '16px' }} />
                   <h3>No Reviews Yet</h3>
                   <p style={{ marginTop: '8px' }}>Customers haven't submitted any ratings for your store yet.</p>
                 </div>
