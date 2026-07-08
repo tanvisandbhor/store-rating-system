@@ -85,14 +85,12 @@ const UserDashboard = () => {
           <span
             key={star}
             onClick={() => handleStarClick(storeId, star)}
+            className="star-rating-star"
             style={{
               fontSize: '24px',
               cursor: 'pointer',
-              color: star <= selectedRating ? '#fbbf24' : '#374151',
-              transition: 'transform 0.2s ease, color 0.2s ease',
+              color: star <= selectedRating ? '#fbbf24' : '#e2dcd5',
             }}
-            onMouseEnter={(e) => (e.target.style.transform = 'scale(1.2)')}
-            onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')}
           >
             ★
           </span>
@@ -106,7 +104,7 @@ const UserDashboard = () => {
       <div className="animate-fade-in">
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h1 style={{ fontSize: '36px', fontWeight: '800', letterSpacing: '-0.02em', background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '8px' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: '800', letterSpacing: '-0.02em', background: 'var(--primary-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '8px' }}>
             Explore Registered Stores
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: '16px' }}>Rate your favorite places and share your feedback</p>
@@ -115,7 +113,7 @@ const UserDashboard = () => {
         {/* Feedback Banners */}
         {error && <div className="error-banner" style={{ marginBottom: '24px' }}>{error}</div>}
         {successMsg && (
-          <div className="badge badge-user" style={{ width: '100%', padding: '12px', background: 'rgba(16, 185, 129, 0.15)', color: '#a7f3d0', marginBottom: '24px', display: 'block', textAlign: 'center' }}>
+          <div className="badge" style={{ width: '100%', padding: '12px', background: 'rgba(5, 150, 105, 0.08)', color: '#047857', border: '1px solid rgba(5, 150, 105, 0.15)', marginBottom: '24px', display: 'block', textAlign: 'center' }}>
             {successMsg}
           </div>
         )}
@@ -180,12 +178,12 @@ const UserDashboard = () => {
                   <div>
                     {/* Card Header */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
-                      <div style={{ padding: '10px', background: 'rgba(99, 102, 241, 0.12)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ padding: '10px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <span style={{ fontSize: '24px' }}>🏪</span>
                       </div>
 
                       {/* Overall Average Rating Badge */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(8, 12, 28, 0.5)', padding: '6px 12px', borderRadius: '8px', border: '1px solid var(--border-glass)' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(254, 243, 199, 0.5)', border: '1px solid rgba(180, 83, 9, 0.15)', color: '#9a3412', padding: '6px 12px', borderRadius: '8px' }}>
                         <span style={{ color: '#fbbf24', fontSize: '15px' }}>★</span>
                         <span style={{ fontSize: '14px', fontWeight: '700' }}>
                           {store.overallRating > 0 ? store.overallRating.toFixed(1) : 'New'}
@@ -207,7 +205,7 @@ const UserDashboard = () => {
                         {hasRated ? 'Your submitted rating' : 'Leave your rating'}
                       </span>
                       {hasRated && (
-                        <span className="badge badge-user" style={{ fontSize: '11px', background: 'rgba(16, 185, 129, 0.1)', color: '#34d399' }}>
+                        <span className="badge" style={{ fontSize: '11px', background: 'rgba(5, 150, 105, 0.08)', color: '#059669', border: '1px solid rgba(5, 150, 105, 0.15)' }}>
                           Rated: {store.userRating} ★
                         </span>
                       )}

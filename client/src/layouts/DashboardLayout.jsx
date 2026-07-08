@@ -77,19 +77,19 @@ const DashboardLayout = ({ children }) => {
   return (
     <div>
       {/* Top Navbar */}
-      <nav style={{ background: 'rgba(10, 15, 30, 0.8)', borderBottom: '1px solid var(--border-glass)', backdropFilter: 'blur(12px)', position: 'sticky', top: 0, zIndex: 100 }}>
+      <nav style={{ background: 'rgba(255, 255, 255, 0.72)', borderBottom: '1px solid rgba(180, 83, 9, 0.08)', backdropFilter: 'blur(16px)', position: 'sticky', top: 0, zIndex: 100 }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--primary-gradient)' }}></div>
-            <span style={{ fontSize: '20px', fontWeight: '800', trackingTight: '-0.02em' }}>
-              Rate<span style={{ color: '#6366f1' }}>Sphere</span>
+            <span style={{ fontSize: '20px', fontWeight: '800', trackingTight: '-0.02em', color: 'var(--text-main)' }}>
+              Rate<span style={{ color: 'var(--accent-pink)' }}>Sphere</span>
             </span>
           </div>
 
           {user && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                <span style={{ fontSize: '14px', fontWeight: '500' }}>{user.name}</span>
+                <span style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-main)' }}>{user.name}</span>
                 <span className={`badge ${getRoleBadgeClass(user.role)}`} style={{ marginTop: '4px' }}>
                   {getRoleLabel(user.role)}
                 </span>
@@ -126,12 +126,12 @@ const DashboardLayout = ({ children }) => {
 
       {/* Change Password Modal */}
       {showPasswordModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '16px' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(43, 37, 32, 0.25)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '16px' }}>
           <div className="glass-panel" style={{ width: '100%', maxWidth: '400px', padding: '32px', position: 'relative' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '20px' }}>Change Password</h3>
+            <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-main)' }}>Change Password</h3>
             
             {modalError && <div className="error-banner">{modalError}</div>}
-            {modalSuccess && <div className="badge badge-user" style={{ width: '100%', padding: '10px', background: 'rgba(16, 185, 129, 0.1)', color: '#a7f3d0', marginBottom: '16px', display: 'block', textAlign: 'center' }}>{modalSuccess}</div>}
+            {modalSuccess && <div className="badge" style={{ width: '100%', padding: '10px', background: 'rgba(5, 150, 105, 0.08)', color: '#047857', border: '1px solid rgba(5, 150, 105, 0.15)', marginBottom: '16px', display: 'block', textAlign: 'center' }}>{modalSuccess}</div>}
 
             <form onSubmit={handlePasswordChange}>
               <div className="form-group">

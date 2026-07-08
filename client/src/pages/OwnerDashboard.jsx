@@ -68,19 +68,19 @@ const OwnerDashboard = () => {
 
             {/* Metrics cards */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-              <div className="glass-panel" style={{ padding: '28px' }}>
+              <div className="glass-panel float-card-1" style={{ padding: '28px' }}>
                 <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Overall Store Rating</span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '8px' }}>
                   <span style={{ color: '#fbbf24', fontSize: '38px' }}>★</span>
-                  <h3 style={{ fontSize: '48px', fontWeight: '800', background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1 }}>
+                  <h3 style={{ fontSize: '48px', fontWeight: '800', background: 'var(--primary-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1 }}>
                     {dashboardData.averageRating > 0 ? dashboardData.averageRating.toFixed(1) : 'New'}
                   </h3>
                 </div>
               </div>
 
-              <div className="glass-panel" style={{ padding: '28px' }}>
+              <div className="glass-panel float-card-2" style={{ padding: '28px' }}>
                 <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Reviews Submitted</span>
-                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '14px 0 0', background: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1 }}>
+                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '14px 0 0', background: 'linear-gradient(135deg, #ea580c 0%, #f97316 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1 }}>
                   {dashboardData.totalReviews}
                 </h3>
               </div>

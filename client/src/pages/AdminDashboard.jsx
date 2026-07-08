@@ -243,7 +243,7 @@ const AdminDashboard = () => {
         {/* Global Feedback Banner */}
         {error && <div className="error-banner" style={{ marginBottom: '24px' }}>{error}</div>}
         {success && (
-          <div className="badge badge-user" style={{ width: '100%', padding: '12px', background: 'rgba(16, 185, 129, 0.15)', color: '#a7f3d0', marginBottom: '24px', display: 'block', textAlign: 'center' }}>
+          <div className="badge" style={{ width: '100%', padding: '12px', background: 'rgba(5, 150, 105, 0.08)', color: '#047857', border: '1px solid rgba(5, 150, 105, 0.15)', marginBottom: '24px', display: 'block', textAlign: 'center' }}>
             {success}
           </div>
         )}
@@ -253,17 +253,17 @@ const AdminDashboard = () => {
           <div>
             {/* Stats Cards */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-              <div className="glass-panel" style={{ padding: '24px' }}>
+              <div className="glass-panel float-card-1" style={{ padding: '24px' }}>
                 <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Registered Users</span>
-                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '8px 0 0', background: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stats.users}</h3>
+                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '8px 0 0', background: 'linear-gradient(135deg, #b45309 0%, #d97706 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stats.users}</h3>
               </div>
-              <div className="glass-panel" style={{ padding: '24px' }}>
+              <div className="glass-panel float-card-2" style={{ padding: '24px' }}>
                 <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Registered Stores</span>
-                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '8px 0 0', background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stats.stores}</h3>
+                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '8px 0 0', background: 'linear-gradient(135deg, #d97706 0%, #eab308 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stats.stores}</h3>
               </div>
-              <div className="glass-panel" style={{ padding: '24px' }}>
+              <div className="glass-panel float-card-3" style={{ padding: '24px' }}>
                 <span style={{ fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>Total Ratings Submitted</span>
-                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '8px 0 0', background: 'linear-gradient(135deg, #ec4899 0%, #d946ef 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stats.ratings}</h3>
+                <h3 style={{ fontSize: '48px', fontWeight: '800', margin: '8px 0 0', background: 'linear-gradient(135deg, #ea580c 0%, #f97316 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{stats.ratings}</h3>
               </div>
             </div>
 
@@ -534,9 +534,9 @@ const AdminDashboard = () => {
 
       {/* User Details Modal */}
       {(selectedUser || userDetailLoading) && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '16px' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(43, 37, 32, 0.25)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '16px' }}>
           <div className="glass-panel" style={{ width: '100%', maxWidth: '440px', padding: '32px' }}>
-            <h3 style={{ fontSize: '22px', fontWeight: '700', marginBottom: '24px' }}>User Details Profile</h3>
+            <h3 style={{ fontSize: '22px', fontWeight: '700', marginBottom: '24px', color: 'var(--text-main)' }}>User Details Profile</h3>
             
             {userDetailLoading ? (
               <div className="spinner"></div>
@@ -557,7 +557,7 @@ const AdminDashboard = () => {
                   </div>
                   <div>
                     <span style={{ fontSize: '12px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Physical Address</span>
-                    <p style={{ fontSize: '15px', marginTop: '2px', color: '#e5e7eb' }}>{selectedUser.address}</p>
+                    <p style={{ fontSize: '15px', marginTop: '2px', color: 'var(--text-main)' }}>{selectedUser.address}</p>
                   </div>
                   <div>
                     <span style={{ fontSize: '12px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Role Privilege</span>
@@ -570,7 +570,7 @@ const AdminDashboard = () => {
 
                   {/* Store Owner specific rating link */}
                   {selectedUser.role === 'OWNER' && (
-                    <div style={{ padding: '16px', background: 'rgba(255,255,255,0.03)', borderRadius: '10px', border: '1px solid var(--border-glass)' }}>
+                    <div style={{ padding: '16px', background: 'rgba(254, 243, 199, 0.25)', borderRadius: '10px', border: '1px solid var(--border-glass)' }}>
                       <span style={{ fontSize: '12px', fontWeight: '600', color: '#f59e0b', textTransform: 'uppercase' }}>Owned Store Rating Linkage</span>
                       {selectedUser.storeId ? (
                         <div style={{ marginTop: '8px' }}>

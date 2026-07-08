@@ -100,7 +100,7 @@ const Signup = () => {
     <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', padding: '40px 16px' }}>
       <div className="glass-panel animate-fade-in" style={{ width: '100%', maxWidth: '480px', padding: '40px 32px' }}>
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <h2 style={{ fontSize: '32px', fontWeight: '700', letterSpacing: '-0.02em', background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '8px' }}>
+          <h2 style={{ fontSize: '32px', fontWeight: '800', letterSpacing: '-0.02em', background: 'var(--primary-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '8px' }}>
             Create Account
           </h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '15px' }}>Register to rate your favorite stores</p>
@@ -181,7 +181,7 @@ const Signup = () => {
 
         <div style={{ marginTop: '24px', textAlign: 'center', fontSize: '14px', color: 'var(--text-muted)' }}>
           Already have an account?{' '}
-          <Link to="/login" style={{ color: '#6366f1', textDecoration: 'none', fontWeight: '500' }}>
+          <Link to="/login" style={{ color: 'var(--accent-pink)', textDecoration: 'none', fontWeight: '600' }}>
             Sign in
           </Link>
         </div>
