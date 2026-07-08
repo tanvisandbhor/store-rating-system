@@ -121,8 +121,8 @@ const UserDashboard = () => {
         )}
 
         {/* Toolbar: Filters, Search & Sort */}
-        <div className="glass-panel" style={{ padding: '24px', marginBottom: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', alignItems: 'end' }}>
-          <div className="form-group" style={{ marginBottom: 0 }}>
+        <div className="glass-panel" style={{ padding: '24px', marginBottom: '40px', display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+          <div className="form-group" style={{ marginBottom: 0, flex: '2 1 240px' }}>
             <label className="form-label">Search by Store Name</label>
             <input
               type="text"
@@ -133,7 +133,7 @@ const UserDashboard = () => {
             />
           </div>
 
-          <div className="form-group" style={{ marginBottom: 0 }}>
+          <div className="form-group" style={{ marginBottom: 0, flex: '2 1 240px' }}>
             <label className="form-label">Search by Address</label>
             <input
               type="text"
@@ -144,7 +144,7 @@ const UserDashboard = () => {
             />
           </div>
 
-          <div className="form-group" style={{ marginBottom: 0 }}>
+          <div className="form-group" style={{ marginBottom: 0, flex: '1 1 150px' }}>
             <label className="form-label">Sort Column</label>
             <select className="form-input" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
               <option value="name">Store Name</option>
@@ -153,7 +153,7 @@ const UserDashboard = () => {
             </select>
           </div>
 
-          <div className="form-group" style={{ marginBottom: 0 }}>
+          <div className="form-group" style={{ marginBottom: 0, flex: '1 1 150px' }}>
             <label className="form-label">Sort Order</label>
             <select className="form-input" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
               <option value="asc">Ascending (A-Z / 1-5)</option>
@@ -164,7 +164,7 @@ const UserDashboard = () => {
 
         {/* Store Catalog Cards Grid */}
         {loading ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
             {Array.from({ length: 6 }).map((_, idx) => (
               <CardSkeleton key={idx} />
             ))}
@@ -176,7 +176,7 @@ const UserDashboard = () => {
             <p style={{ marginTop: '8px' }}>We couldn't find any registered stores matching your search parameters.</p>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
             {stores.map((store) => {
               const hasRated = store.userRating !== null;
               return (
